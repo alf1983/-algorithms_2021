@@ -28,3 +28,45 @@
 Решите через рекурсию. Решение через цикл не принимается.
 Для оценки Отлично в этом блоке необходимо выполнить 5 заданий из 7
 """
+
+
+def simple_calculator():
+    operation = input("Введите операцию (+, -, *, / или 0 для выхода): ")
+    if operation == "0":
+        result = "Вы вышли!"
+        return result
+    allowed_operations = ["+", "-", "*", "/"]
+    if operation not in allowed_operations:
+        print('Введена не верная операция. (+, -, *, / или 0 для выхода)')
+        return simple_calculator()
+    first_number = input("Введите первое число: ")
+    try:
+        first_number = int(first_number)
+    except ValueError:
+        print(f"Необходимо ввести ЧИСЛО. {first_number} числом не является")
+        return simple_calculator()
+    second_number = input("Введите второе число: ")
+    try:
+        second_number = int(second_number)
+    except ValueError:
+        print(f"Необходимо ввести ЧИСЛО. {second_number} числом не является")
+        return simple_calculator()
+    if operation == "+":
+        print(f"{first_number} + {second_number} = {first_number + second_number}")
+    elif operation == "-":
+        print(f"{first_number} - {second_number} = {first_number - second_number}")
+    elif operation == "*":
+        print(f"{first_number} * {second_number} = {first_number * second_number}")
+    else:
+        try:
+            result_operation = first_number / second_number
+        except ZeroDivisionError:
+            print(f"На 0 делить нельзя!!!")
+        else:
+            print(f"{first_number} : {second_number} = {round(result_operation, 4)}")
+
+    return simple_calculator()
+
+
+if __name__ == '__main__':
+    print(simple_calculator())
