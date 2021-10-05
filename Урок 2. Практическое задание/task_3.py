@@ -22,3 +22,20 @@
 Решите через рекурсию. Решение через цикл не принимается.
 Для оценки Отлично в этом блоке необходимо выполнить 5 заданий из 7
 """
+
+
+def overturn_number(number, overturned_number=""):
+    if number == 0:
+        return overturned_number
+    overturned_number += str((number % 10))
+    return str(overturn_number((number // 10), overturned_number))
+
+
+if __name__ == '__main__':
+    your_number = input("Введите число, которое требуется перевернуть: ")
+    try:
+        your_number = int(your_number)
+    except ValueError:
+        print(f"Необходимо ввести ЧИСЛО. {your_number} числом не является")
+    else:
+        print(f"Перевернутое число: {overturn_number(your_number)}")

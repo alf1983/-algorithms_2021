@@ -21,3 +21,17 @@
 Решите через рекурсию. Решение через цикл не принимается.
 Для оценки Отлично в этом блоке необходимо выполнить 5 заданий из 7
 """
+
+
+def ascii_codes(code=32, row_limit=0):
+    if code == 128:
+        return ""
+    end = " "
+    if row_limit == 9:
+        end = "\n"
+        row_limit = 0
+    print(f"{code} - {chr(code)}", end=end)
+    return ascii_codes(code + 1, row_limit + 1)
+
+
+print(ascii_codes())
