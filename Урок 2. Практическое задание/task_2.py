@@ -18,3 +18,25 @@
 Решите через рекурсию. Решение через цикл не принимается.
 Для оценки Отлично в этом блоке необходимо выполнить 5 заданий из 7
 """
+
+
+def odd_even_number(number, odd=0, even=0):
+    if number < 0:
+        number = abs(number)
+    if number == 0:
+        return odd, even
+    if ((number % 10) % 2) == 0:
+        even += 1
+        return odd_even_number(number // 10, odd, even)
+    else:
+        odd += 1
+        return odd_even_number(number // 10, odd, even)
+
+
+if __name__ == '__main__':
+    your_number = input("Введите число: ")
+    try:
+        your_number = int(your_number)
+    except ValueError:
+        print(f"Необходимо ввести ЧИСЛО. {your_number} числом не является")
+    print(f"Количество нечетных и четных цифр в числе равно: {odd_even_number(your_number)}")
