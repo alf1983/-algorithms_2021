@@ -15,3 +15,23 @@ url : хеш-url
 
 Задание творческое. Здесь нет жестких требований к выполнению.
 """
+from hashlib import md5
+
+
+class CacheUrl:
+    def __init__(self):
+        self.solt = "site_domain.com".encode()
+        self.cache_info = {}
+
+    def cache_url(self, url):
+        if self.cache_info.get(url):
+            print(f"{url} присутствует в кэше")
+        else:
+            url_hesh = md5(url.encode() + self.solt).hexdigest()
+            self.cache_info[url] = url_hesh
+            print(self.cache_info)
+
+
+test = CacheUrl()
+test.cache_url("https://www.google.com")
+test.cache_url("https://www.google.com")
