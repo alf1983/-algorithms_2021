@@ -21,3 +21,10 @@
 скорость доступа вместе с уникальностью элементов,
 которые даёт множество, сделают решение коротким и эффективным.
 """
+
+test_string = "papaya"
+hesh_set = set()
+for i in range(len(test_string)):
+    for j in range(i+1, len(test_string)+1):
+        hesh_set.add(hash(test_string[i:j]))
+print(f"{test_string} - {len(hesh_set)} уникальных подстрок")

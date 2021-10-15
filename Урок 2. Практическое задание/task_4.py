@@ -15,3 +15,21 @@
 Решите через рекурсию. Решение через цикл не принимается.
 Для оценки Отлично в этом блоке необходимо выполнить 5 заданий из 7
 """
+
+
+def sum_ellements(n, next_number=1.0, result=1):
+    if n == 1:
+        return result
+    result += (next_number / 2) * -1
+    return sum_ellements(n - 1, (next_number / 2) * -1, result)
+
+
+if __name__ == '__main__':
+    n = input("Введите количество элементов: ")
+    try:
+        n = int(n)
+    except ValueError:
+        print(f"Необходимо ввести количество целое положительное, {n} таковым не является")
+    else:
+        print(f"Количество элементов: {n}, их сумма: {sum_ellements(n)}")
+
