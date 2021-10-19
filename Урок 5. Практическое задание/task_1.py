@@ -23,3 +23,26 @@
 
 Предприятия, с прибылью ниже среднего значения: Фирма_2
 """
+from collections import namedtuple
+
+report = namedtuple("report_1", "name firm_profit")
+firms_count = int(input("Введите количество предприятий для расчета прибыли: "))
+total_profit = 0
+firms = []
+firm_annual_profit = 0
+for _ in range(firms_count):
+    firm_name = input("Введите название предприятия: ")
+    print("через пробел введите прибыль данного предприятия")
+    profit = input("за каждый квартал(Всего 4 квартала): ")
+    firm_annual_profit = sum(map(int, profit.strip().split(" ")))
+    firms.append(report(firm_name, firm_annual_profit))
+    total_profit += firm_annual_profit
+average_profit = round((total_profit / firms_count), 2)
+bad_firms, good_firms = "", ""
+for firm in firms:
+    if firm.firm_profit > average_profit:
+        good_firms += firm.name + ' '
+    if firm.firm_profit < average_profit:
+        bad_firms += firm.name + ' '
+print(f"Предприятия, с прибылью выше среднего значения: {good_firms}")
+print(f"Предприятия, с прибылью ниже среднего значения: {bad_firms}")
