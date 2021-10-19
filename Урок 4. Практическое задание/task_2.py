@@ -24,23 +24,22 @@ def recursive_reverse(number):
 num_100 = randint(10000, 1000000)
 num_1000 = randint(1000000, 10000000)
 num_10000 = randint(100000000, 10000000000000)
-
 print('Не оптимизированная функция recursive_reverse')
 print(
-    timeit(
+    "{:.16f}".format(timeit(
         "recursive_reverse(num_100)",
         setup='from __main__ import recursive_reverse, num_100',
-        number=10000))
+        number=100)))
 print(
-    timeit(
+    "{:.16f}".format(timeit(
         "recursive_reverse(num_1000)",
         setup='from __main__ import recursive_reverse, num_1000',
-        number=10000))
+        number=100)))
 print(
-    timeit(
+    "{:.16f}".format(timeit(
         "recursive_reverse(num_10000)",
         setup='from __main__ import recursive_reverse, num_10000',
-        number=10000))
+        number=100)))
 
 
 def memoize(f):
@@ -65,17 +64,20 @@ def recursive_reverse_mem(number):
 
 print('Оптимизированная функция recursive_reverse_mem')
 print(
-    timeit(
+    "{:.16f}".format(timeit(
         'recursive_reverse_mem(num_100)',
         setup='from __main__ import recursive_reverse_mem, num_100',
-        number=10000))
+        number=100)))
 print(
-    timeit(
+    "{:.16f}".format(timeit(
         'recursive_reverse_mem(num_1000)',
         setup='from __main__ import recursive_reverse_mem, num_1000',
-        number=10000))
+        number=100)))
 print(
-    timeit(
+    "{:.16f}".format(timeit(
         'recursive_reverse_mem(num_10000)',
         setup='from __main__ import recursive_reverse_mem, num_10000',
-        number=10000))
+        number=100)))
+"""
+Как мы разобрались на уроке дикоратор кэширования не сильно убыстряет работу при меньшем количестве запусков
+"""

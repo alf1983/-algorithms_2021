@@ -20,3 +20,44 @@ b) выполните набор операций и со списком, и с�
 
 Прошу вас внимательно читать ТЗ и не забыть выполнить все пункты.
 """
+import time
+
+
+def measurement(func):
+    def timer(*args, **kwargs):
+        start_time = time.time()
+        print(start_time)
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        print(end_time)
+        print(f"Для {func.__name__} время исполнения {end_time - start_time}")
+        return result
+
+    return timer
+
+
+@measurement
+def fill_list_1(lst, ellements):
+    for i in range(ellements):
+        lst.append(i)  # O(1) сложность
+
+
+@measurement
+def fill_list_2(lst, ellements):
+    for i in range(ellements):
+        lst.insert(0, i)  # O(N) сложность
+
+
+@measurement
+def fill_dict_1(dct, ellements):
+    for i in range(ellements):
+        dct[i] = i  # O(1) сложность
+
+
+fill_dict_1({}, 1000)
+fill_list_1([], 1000)
+fill_list_2([], 1000)
+
+"""
+Самая быстрая выходит fill_list_1 но сложность O(1) как и fill_dict_1
+"""
