@@ -40,3 +40,56 @@ for i in
 
 
 """
+from heapq import heappop, heappush
+import random
+
+
+def no_sort(random_list):
+    action_list = random_list[:]
+    left_half = []
+    right_half = []
+    i = 0
+    while i < len(action_list):
+        for j in range(len(action_list)):
+            if action_list[i] > action_list[j]:
+                left_half.append(action_list[j])
+            elif action_list[i] < action_list[j]:
+                right_half.append(action_list[j])
+            if action_list[i] == action_list[j]:
+                if i > j:
+                    left_half.append(action_list[j])
+                if i < j:
+                    right_half.append(action_list[j])
+        if len(left_half) == len(right_half):
+            return action_list[i]
+        i += 1
+        left_half = []
+        right_half = []
+
+
+def heap_sort(array, m):
+    heap = []
+    for element in array:
+        heappush(heap, element)
+    ordered = []
+    # While we have elements left in the heap
+    while heap:
+        ordered.append(heappop(heap))
+    return ordered[m]
+
+
+m = int(input("Введине m: "))
+print(f"Длинна массива будет 2m + 1 = {2 * m + 1}")
+lst = [random.randint(-100, 100) for _ in range(2 * m + 1)]
+print(f"Случайный список длинной {2 * m + 1}:")
+print(lst)
+print(f"Медиана {heap_sort(lst, m)}, найдена с помощью сортировки кучей")
+print(f"Медиана {no_sort(lst)}, найдена без сортировки")
+"""
+Введине m: 7
+Длинна массива будет 2m + 1 = 15
+Случайный список длинной 15:
+[68, 67, 50, -88, 5, -26, -36, -26, -51, -29, 7, -45, -67, 64, 66]
+Медиана -26, найдена с помощью сортировки кучей
+Медиана -26, найдена без сортировки
+"""

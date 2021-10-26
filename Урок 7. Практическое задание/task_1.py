@@ -17,3 +17,52 @@
 Сделайте выводы!!!
 Опишите в чем была ваша доработка и помогла ли вам доработка??
 """
+import random
+from timeit import timeit
+
+
+def bubble_sort(rand_lst):
+    for i in range(len(rand_lst)-1):
+        for j in range(i, len(rand_lst)):
+            if rand_lst[j] > rand_lst[i]:
+                rand_lst[j], rand_lst[i] = rand_lst[i], rand_lst[j]
+    return rand_lst
+
+
+def bubble_sort_upgrade(rand_lst):
+    not_sorted = True
+    while not_sorted:
+        not_sorted = False
+        for i in range(len(rand_lst)-1):
+            if rand_lst[i] < rand_lst[i+1]:
+                rand_lst[i], rand_lst[i+1] = rand_lst[i+1], rand_lst[i]
+                not_sorted = True
+    return rand_lst
+
+
+lst = [random.randint(-100, 100) for _ in range(random.randint(5, 10))]
+print(f"Случайный список c длинной {len(lst)}")
+print(lst)
+print("Отсортированый список:")
+print(bubble_sort(lst[:]))
+print(bubble_sort_upgrade(lst[:]))
+print("Время выполнения без доработки", end=" ")
+print(timeit(f"{bubble_sort(lst[:])}", globals=globals()))
+print("Время выполнения с доработкой", end=" ")
+print(timeit(f"{bubble_sort_upgrade(lst[:])}", globals=globals()))
+"""
+Случайный список c длинной 7
+[-3, -80, -87, -90, 60, 87, -41]
+Отсортированый список:
+[87, 60, -3, -41, -80, -87, -90]
+[87, 60, -3, -41, -80, -87, -90]
+Время выполнения без доработки 0.06202964
+Время выполнения с доработкой 0.06275674799999999
+разницы во времени почти нет (в пределах погрешности), но всё же:
+1. изящнее решение
+2. итераций теоритически может быть меньше, если на 2-ом, 5-ом или даже 10-ом проходе список отвортируется
+но это чисто моё мнение
+Случайный список c длинной 910
+Время выполнения без доработки 2.846011534
+Время выполнения с доработкой 2.7963554050000003
+"""
