@@ -16,3 +16,26 @@
 Решите через рекурсию. Решение через цикл не принимается.
 Для оценки Отлично в этом блоке необходимо выполнить 5 заданий из 7
 """
+
+
+def sum_progression(n, progress_sum=1):
+    print(f"{n}", end=" ")
+    if n == 1:
+        print(" =", end=" ")
+        return progress_sum
+    print(" +", end=" ")
+    progress_sum += n
+    return sum_progression(n-1, progress_sum)
+
+
+if __name__ == '__main__':
+    n = input("Введите n: ")
+    try:
+        n = int(n)
+    except ValueError:
+        print(f"Необходимо ввести целое положительное число, {n} таковым не является")
+    else:
+        sum_check = sum_progression(n)
+        forlmula_chek = (n * (n + 1)) / 2
+        print(sum_check)
+        print(f"({n}({n} + 1):2) = {round(forlmula_chek)}")
