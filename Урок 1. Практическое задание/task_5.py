@@ -28,3 +28,38 @@
 
 Задание творческое. Здесь нет жестких требований к выполнению.
 """
+
+
+class StackOfPlates:
+    def __init__(self, stack_max_size):
+        self.plates = []
+        self.stack_max_size = stack_max_size
+
+    def is_empty(self):
+        return self.plates == []
+
+    def push_in(self, el):
+        self.plates.append(el)
+
+    def pop_out(self):
+        return self.plates.pop()
+
+    def get_plate(self):
+        return self.plates[len(plates)-1]
+
+    def stack_size(self):
+        return len(self.plates)
+
+    def is_full(self):
+        return len(self.plates) >= self.stack_max_size
+
+
+if __name__ == '__main__':
+    plates_stack = StackOfPlates(3)
+    for i in range(4):
+        if plates_stack.is_full() is not False:
+            plates_stack.push_in("plate" + str(i))
+        else:
+            plates_stack = StackOfPlates(3)
+            plates_stack.push_in("plate" + str(i))
+
